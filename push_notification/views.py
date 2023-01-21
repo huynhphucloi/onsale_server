@@ -12,7 +12,7 @@ def createNotification(request):
         json_data = json.loads(request.body)
         try:
             notification = Notification(title=json_data["title"], message=json_data["message"],
-                                        topic=json_data["topic"], image=json_data["image"])
+                                        topic=json_data["topic"],)
             notification.save()
             return HttpResponse("ok")
         except:

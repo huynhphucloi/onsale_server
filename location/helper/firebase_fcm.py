@@ -32,7 +32,6 @@ def sendNotification(instance):
         notification=messaging.Notification(
             title=instance.title,
             body=instance.message,
-            image=instance.image,
         ),
         topic=instance.topic
     )
