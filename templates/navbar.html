@@ -1,0 +1,13 @@
+<nav class="py-2 bg-light border-bottom">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+        <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Logo</a></li>
+      </ul>
+      <ul class="nav">
+          {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link link-dark px-2 text-danger">Logout</a></li>
+          {% endif %}
+
+      </ul>
+    </div>
+  </nav>

@@ -1,0 +1,110 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Shop | Home
+{% endblock %}
+
+{% block content %}
+    <div class="shop_title"><h3 class="text-center m-4">Shop Information</h3></div>
+    <div class="shop_info">
+        <form class="row g-3 needs-validation" type="" method="POST" novalidate>
+          {% csrf_token %}
+          <div class="col-md-4">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{ shop.name }}" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+              <div class="invalid-feedback">
+                Please provide Name of Shop.
+              </div>
+          </div>
+          <div class="col-md-4">
+            <label for="open_hour" class="form-label">Open hour</label>
+            <input type="number" class="form-control" name="open_hour" id="open_hour" value="{{ shop.open_hour }}" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+              <div class="invalid-feedback">
+                Please provide open hour.
+              </div>
+          </div>
+          <div class="col-md-4">
+            <label for="close_hour" class="form-label">Close hour</label>
+            <div class="input-group has-validation">
+              <input type="number" class="form-control" name="close_hour" id="close_hour" value="{{ shop.close_hour }}" required>
+              <div class="invalid-feedback">
+                Please provide close hour.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input type="text" class="form-control" value="{{ shop.password }}" name="password" id="password" required>
+            <div class="invalid-feedback">
+              Please provide Password.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="distance" class="form-label">Distance (m)</label>
+            <input type="number" class="form-control" value="{{ shop.distance }}" name="distance" id="distance" required>
+            <div class="invalid-feedback">
+              Please provide a Distance.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="url" class="form-label">Url</label>
+            <input type="text" class="form-control" name="url" value="{{ shop.url }}" id="validationCustom03" required>
+            <div class="invalid-feedback">
+              Please provide Url.
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="latitude" class="form-label">Latitude</label>
+            <input type="text" class="form-control" value="{{ shop.lat }}" name="latitude" id="latitude" required>
+            <div class="invalid-feedback">
+              Please provide a Latitude.
+            </div>
+          </div>
+            <div class="col-md-3">
+            <label for="longitude" class="form-label">Longitude</label>
+            <input type="text" class="form-control" value="{{ shop.lng }}" name="longitude" id="longitude" required>
+            <div class="invalid-feedback">
+              Please provide a Longitude.
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" rows="3" name="message" required>{{ shop.message }}</textarea>
+            <div class="invalid-feedback">
+              Please provide a Message.
+            </div>
+          </div>
+          <div class="col-12">
+              <hr>
+          </div>
+          <div class="col-12">
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Change</button>
+          </div>
+        </form>
+    </div>
+    <script>
+        (function () {
+          'use strict'
+          let forms = document.querySelectorAll('.needs-validation')
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+        })()
+    </script>
+{% endblock %}

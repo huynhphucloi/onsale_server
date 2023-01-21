@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Shop | Home
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-success m-5" role="alert">
+      <h4 class="alert-heading">Well done!</h4>
+      <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+      <hr>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-warning m-2">
+                <a href="{% url 'shop' %}" class="nav-link link-dark px-2 ">Edit</a>
+            </button>
+            <button type="button" class="btn btn-success m-2">
+                <a href="{% url 'logout' %}" class="nav-link link-dark px-2 text-white">Logout</a>
+            </button>
+        </div>
+    </div>
+{% endblock %}
