@@ -12,6 +12,20 @@ class ShopAdmin(admin.ModelAdmin):
     search_fields = ['name', 'password']
     list_filter = ['user']
     readonly_fields = ['password']
+    fieldsets = (
+        ("Shop Information", {
+            'fields': ('name', 'password', 'open_hour', 'close_hour')
+        }),
+        ("Location", {
+            'fields': ('google_maps', 'distance')
+        }),
+        ("Message", {
+            'fields': ('url', 'message')
+        }),
+        ("Owner", {
+            'fields': ('user',)
+        })
+    )
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
