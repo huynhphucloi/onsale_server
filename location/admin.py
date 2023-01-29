@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Shop
+from .models import Shop, ShopGroup
 
 admin.site.site_header = "On Sale Locator"
 admin.site.site_title = "On Sale Locator"
@@ -8,9 +8,9 @@ admin.site.index_title = "On Sale Locator"
 
 class ShopAdmin(admin.ModelAdmin):
     ordering = ['name']
-    list_display = ('name', 'password', 'user')
+    list_display = ('name', 'password', 'shop_group')
     search_fields = ['name', 'password']
-    list_filter = ['user']
+    list_filter = ['shop_group']
     readonly_fields = ['password']
     fieldsets = (
         ("Shop Information", {
@@ -23,7 +23,7 @@ class ShopAdmin(admin.ModelAdmin):
             'fields': ('url', 'message')
         }),
         ("Owner", {
-            'fields': ('user',)
+            'fields': ('shop_group',)
         })
     )
 
@@ -33,5 +33,19 @@ class ShopAdmin(admin.ModelAdmin):
         return []
 
 
+class ShopGroupAdmin(admin.ModelAdmin):
+    ordering = ['name']
+    list_display = ('name', 'password')
+    search_fields = ['name', 'password']
+    readonly_fields = ['password']
+
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['password']
+        return []
+
+
 # Register your models here.
 admin.site.register(Shop, ShopAdmin)
+admin.site.register(ShopGroup, ShopGroupAdmin)

@@ -1,7 +1,15 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
-User = get_user_model()
+
+class ShopGroup(models.Model):
+    name = models.CharField(max_length=25, default="List shop Name")
+    password = models.CharField(max_length=7, default="Password for list shop", unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Shop Groups"
 
 
 # Create your models here.
@@ -16,10 +24,10 @@ class Shop(models.Model):
     lat = models.FloatField(max_length=10, default=0.0)
     lng = models.FloatField(max_length=10, default=0.0)
     distance = models.IntegerField(default=150)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    shop_group = models.ForeignKey(ShopGroup, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.username
+        return self.shop_group.name
 
     def json(self):
         return {
