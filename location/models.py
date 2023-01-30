@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class ShopGroup(models.Model):
@@ -17,8 +18,14 @@ class Shop(models.Model):
     name = models.CharField(max_length=25, default="Shop Name")
     url = models.CharField(max_length=50, default="Link Website for Shop")
     password = models.CharField(max_length=7, default="Password add Shop", unique=True)
-    open_hour = models.IntegerField(default=8)
-    close_hour = models.IntegerField(default=20)
+    open_hour = models.IntegerField(default=8, validators=[
+        MinValueValidator(0, message="Opening time must be between 0h and 23h"),
+        MaxValueValidator(23, message="Opening time must be between 0h and 23h")
+    ])
+    close_hour = models.IntegerField(default=20, validators=[
+        MaxValueValidator(24, message="The latest closing time is 24h"),
+        MinValueValidator(1, message="Closing time must be at least 1 hour longer than opening time")
+    ])
     message = models.CharField(max_length=150, default="Message notification")
     google_maps = models.CharField(max_length=300, default="Link Google Maps")
     lat = models.FloatField(max_length=10, default=0.0)
