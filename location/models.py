@@ -27,6 +27,7 @@ class Shop(models.Model):
         MinValueValidator(1, message="Closing time must be at least 1 hour longer than opening time")
     ])
     message = models.CharField(max_length=150, default="Message notification")
+    message_two = models.CharField(max_length=150, default="Message notification 0m Distance")
     google_maps = models.CharField(max_length=600, default="Link Google Maps")
     lat = models.FloatField(max_length=10, default=0.0)
     lng = models.FloatField(max_length=10, default=0.0)
@@ -43,7 +44,8 @@ class Shop(models.Model):
             "open_hour": self.open_hour,
             "close_hour": self.close_hour,
             "information": {
-                "message": self.message,
+                "messageOne": self.message,
+                "messageTwo": self.message_two,
                 "lat": self.lat,
                 "lng": self.lng,
                 "distance": self.distance
