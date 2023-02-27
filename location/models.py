@@ -16,7 +16,7 @@ class ShopGroup(models.Model):
 # Create your models here.
 class Shop(models.Model):
     name = models.CharField(max_length=25, default="Shop Name")
-    url = models.CharField(max_length=50, default="Link Website for Shop")
+    url = models.CharField(max_length=500, default="Link Website for Shop")
     password = models.CharField(max_length=7, default="Password add Shop", unique=True)
     open_hour = models.IntegerField(default=8, validators=[
         MinValueValidator(0, message="Opening time must be between 0h and 23h"),
@@ -27,7 +27,7 @@ class Shop(models.Model):
         MinValueValidator(1, message="Closing time must be at least 1 hour longer than opening time")
     ])
     message = models.CharField(max_length=150, default="Message notification")
-    google_maps = models.CharField(max_length=300, default="Link Google Maps")
+    google_maps = models.CharField(max_length=600, default="Link Google Maps")
     lat = models.FloatField(max_length=10, default=0.0)
     lng = models.FloatField(max_length=10, default=0.0)
     distance = models.IntegerField(default=150)
