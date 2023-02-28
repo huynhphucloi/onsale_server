@@ -20,7 +20,7 @@ class ShopAdmin(admin.ModelAdmin):
             'fields': ('google_maps', 'distance')
         }),
         ("Message", {
-            'fields': ('url', 'message', 'message_two')
+            'fields': ('url', 'message', 'url_two', 'message_two')
         }),
         ("Owner", {
             'fields': ('shop_group',)

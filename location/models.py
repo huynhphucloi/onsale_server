@@ -17,6 +17,7 @@ class ShopGroup(models.Model):
 class Shop(models.Model):
     name = models.CharField(max_length=25, default="Shop Name")
     url = models.CharField(max_length=500, default="Link Website for Shop")
+    url_two = models.CharField(max_length=500, default="Link Website for Shop")
     password = models.CharField(max_length=7, default="Password add Shop", unique=True)
     open_hour = models.IntegerField(default=8, validators=[
         MinValueValidator(0, message="Opening time must be between 0h and 23h"),
